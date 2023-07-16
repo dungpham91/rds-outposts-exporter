@@ -1,4 +1,4 @@
-name: Trivy
+name: Trivy Docker Image Scanning
 
 on:
   push:

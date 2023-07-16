@@ -1,4 +1,4 @@
-name: Code Scanning
+name: CodeQL Analysis
 
 on:
   push:
@@ -15,8 +15,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  code-scanning:
-    name: Code Scanning
+  codeql-analysis:
+    name: CodeQL Analysis
     runs-on: ubuntu-latest
     permissions:
       security-events: write
