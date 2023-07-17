@@ -25,11 +25,11 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
 
       - name: Check helm chart exists
         id: check_chart_exists
-        uses: andstor/file-existence-action@v2
+        uses: andstor/file-existence-action@20b4d2e596410855db8f9ca21e96fbe18e12930b # v2.0.0
         with:
           files: "chart/Chart.yaml"
 
@@ -43,7 +43,7 @@ jobs:
 
       - name: Run kubesec scanner
         if: steps.check_chart_exists.outputs.files_exists == 'true'
-        uses: controlplaneio/kubesec-action@main
+        uses: controlplaneio/kubesec-action@43d0ddff5ffee89a6bb9f29b64cd865411137b14 # v0.0.2
         with:
           input: all.yaml
           format: template
@@ -52,7 +52,7 @@ jobs:
           exit-code: "0"
 
       - name: Upload Kubesec scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@489225d82a57396c6f426a40e66d461b16b3461d # v2.20.4
         if: always() && steps.check_chart_exists.outputs.files_exists == 'true'
         with:
           sarif_file: kubesec-results.sarif
