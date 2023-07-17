@@ -27,10 +27,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Check helm chart exists
+        id: check_chart_exists
+        uses: andstor/file-existence-action@v2
+        with:
+          files: "chart/Chart.yaml"
+
+      - name: File exists
+        if: steps.check_chart_exists.outputs.files_exists == 'true'
+        run: echo "Helm chart exists !"
+
       - name: Collect all yaml
+        if: steps.check_chart_exists.outputs.files_exists == 'true'
         run: find ./chart -type f -name "*.yaml" -exec sh -c "echo '---' | cat - {}" \; > all.yaml
 
       - name: Run kubesec scanner
+        if: steps.check_chart_exists.outputs.files_exists == 'true'
         uses: controlplaneio/kubesec-action@main
         with:
           input: all.yaml
@@ -41,7 +53,7 @@ jobs:
 
       - name: Upload Kubesec scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
-        if: always()
+        if: always() && steps.check_chart_exists.outputs.files_exists == 'true'
         with:
           sarif_file: kubesec-results.sarif
           wait-for-processing: true
