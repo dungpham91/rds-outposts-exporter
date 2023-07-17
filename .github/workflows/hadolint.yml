@@ -28,10 +28,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
 
       - name: Run hadolint
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@54c9adbab1582c2ef04b2016b760714a4bfde3cf # v3.1.0
         with:
           dockerfile: ./Dockerfile
           format: sarif
@@ -39,7 +39,7 @@ jobs:
           no-fail: true
 
       - name: Upload analysis results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@489225d82a57396c6f426a40e66d461b16b3461d # v2.20.4
         if: always()
         with:
           sarif_file: hadolint-results.sarif
