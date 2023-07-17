@@ -1,14 +1,26 @@
 name: Auto approve
 
-on: pull_request_target
+on:
+  issue_comment:
+    types:
+      - created
 
 jobs:
   auto-approve:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    if: github.event.pull_request.user.login == '@dungpham91'
     steps:
-      - uses: hmarr/auto-approve-action@v3
-        with:
-          review-message: "Auto approved for owner pull request"
+    - uses: actions/github-script@v6
+      name: Approve LGTM Review
+      if: github.actor == 'dungpham91' &&  contains(github.event.comment.body, 'LGTM')
+      with:
+        script: |
+          github.rest.pulls.createReview({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+            review_id: 1,
+            event: 'APPROVE',
+            body: 'Auto approved for owner pull request.'
+          })
