@@ -5,11 +5,12 @@ COPY . .
 RUN env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /rds_outpost_exporter ./ && \
     chmod +x /rds_outpost_exporter
 
-# alpine:3.18
+# alpine:3.18.2
 FROM alpine@sha256:25fad2a32ad1f6f510e528448ae1ec69a28ef81916a004d3629874104f8a7f70
 COPY --from=build ["/rds_outpost_exporter", "/bin/" ]
 # Check version ca-certificates: https://pkgs.alpinelinux.org/package/edge/main/x86/ca-certificates
 RUN apk update --no-cache && \
+    apk upgrade --no-cache && \
     apk add --no-cache ca-certificates=20230506-r0 && \
     update-ca-certificates && \
     rm -rf /var/cache/apk/*
