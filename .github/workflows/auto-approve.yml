@@ -5,6 +5,9 @@ on:
     types:
       - created
 
+permissions:
+  contents: read
+
 jobs:
   auto-approve:
     runs-on: ubuntu-latest
