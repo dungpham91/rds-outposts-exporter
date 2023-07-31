@@ -1,5 +1,5 @@
 # golang:1.20.6-alpine
-FROM golang@sha256:cfc9d1b07b1ef4f7a4571f0b60a99646a92ef76adb7d9943f4cb7b606c6554e2 as build
+FROM golang@sha256:4e097209fa5606a84d6970b90f127a3b0e75a748735c7d9d32d1312487abc5e0 as build
 WORKDIR /app
 COPY . .
 RUN env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /rds_outpost_exporter ./ && \
