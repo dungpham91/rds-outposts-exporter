@@ -23,6 +23,9 @@ However, during development, things can become outdated or new vulnerabilities a
 
 In that case, if you find any problems related to the security of the application. Please contact us by following steps:
 - Click the [Issues](https://github.com/dungpham91/rds-outposts-exporter/issues) item and then click the `New issue` button to create a new issue for the security issue you discovered.
+
+![security-01.jpg](./images/security-01.jpg)
+
 - Next, please fill in the necessary information for the issue as shown in the image below. Be sure to select the `security` label. And at the same time provide all the basic information below:
 
   - **`Description`**: describe in detail the issue you encountered, with a screenshot or error log.
@@ -32,6 +35,8 @@ In that case, if you find any problems related to the security of the applicatio
   - **`Environment`**: information about the environment in which you deploy the application. For example: EKS 1.27, Helm v3,...
 
   - **`Re-simulate the issue`**: step by step to be able to reproduce the error you encountered
+
+![security-02.jpg](./images/security-02.jpg)
  
 ## Security fix time
 
