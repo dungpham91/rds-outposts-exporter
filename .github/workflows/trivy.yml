@@ -35,7 +35,7 @@ jobs:
           docker build -t dungpham91/rds-outpost-exporter:${{ github.sha }} .
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@b2933f565dbc598b29947660e66259e3c7bc8561 # 0.20.0
+        uses: aquasecurity/trivy-action@fd25fed6972e341ff0007ddb61f77e88103953c2 # 0.21.0
         with:
           image-ref: 'dungpham91/rds-outpost-exporter:${{ github.sha }}'
           format: 'sarif'
