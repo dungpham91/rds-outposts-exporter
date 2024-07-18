@@ -11,7 +11,7 @@ COPY --from=build ["/rds_outpost_exporter", "/bin/" ]
 # Check version ca-certificates: https://pkgs.alpinelinux.org/package/edge/main/x86/ca-certificates
 RUN apk update --no-cache && \
     apk upgrade --no-cache && \
-    apk add --no-cache ca-certificates=20240226-r0 && \
+    apk add --no-cache ca-certificates=20240705-r0 && \
     update-ca-certificates && \
     rm -rf /var/cache/apk/*
 
