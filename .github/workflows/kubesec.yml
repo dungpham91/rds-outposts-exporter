@@ -55,7 +55,7 @@ jobs:
           exit-code: "0"
 
       - name: Upload Kubesec scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@3c3833e0f8c1c83d449a7478aa59c036a9165498 # v3.29.5
+        uses: github/codeql-action/upload-sarif@f1f6e5f6af878fb37288ce1c627459e94dbf7d01 # v3.29.5
         if: always() && steps.check_chart_exists.outputs.files_exists == 'true'
         with:
           sarif_file: kubesec-results.sarif
